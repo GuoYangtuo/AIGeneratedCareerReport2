@@ -19,10 +19,14 @@ export async function POST(request: NextRequest) {
     // 生成 HTML 内容
     const htmlContent = generateReportHTML(reportData);
 
-    // 启动 Puppeteer
+    // 启动 Puppeteer - 优先使用系统安装的 Chrome
+    const executablePath = process.env.CHROME_PATH || 
+      (process.platform === 'linux' ? '/usr/bin/google-chrome-stable' : undefined);
+    
     browser = await puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      executablePath,
+      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
     });
 
     const page = await browser.newPage();
