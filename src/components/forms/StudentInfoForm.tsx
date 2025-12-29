@@ -25,14 +25,14 @@ export default function StudentInfoForm({ data, onChange }: Props) {
     <div className="form-section animate-fade-in">
       <h2 className="form-section-title">
         <span className="inline-flex items-center gap-2">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
           </svg>
           学生基础信息
         </span>
       </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div>
           <label className="form-label">学生姓名 *</label>
           <input
@@ -60,18 +60,18 @@ export default function StudentInfoForm({ data, onChange }: Props) {
 
         <div>
           <label className="form-label">当前成绩水平 *</label>
-          <div className="flex gap-4 mt-2">
+          <div className="flex flex-wrap gap-2 sm:gap-4 mt-2">
             {performanceOptions.map((level) => (
-              <label key={level} className="flex items-center gap-2 cursor-pointer">
+              <label key={level} className="flex items-center gap-1.5 sm:gap-2 cursor-pointer">
                 <input
                   type="radio"
                   name="performance"
                   value={level}
                   checked={data.currentPerformance === level}
                   onChange={(e) => handleChange('currentPerformance', e.target.value)}
-                  className="w-4 h-4 text-primary focus:ring-primary"
+                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary focus:ring-primary"
                 />
-                <span className={`px-3 py-1 rounded-full text-sm transition-all ${
+                <span className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm transition-all ${
                   data.currentPerformance === level 
                     ? 'bg-primary text-white' 
                     : 'bg-gray-100 text-gray-600 hover:bg-accent'
@@ -85,18 +85,18 @@ export default function StudentInfoForm({ data, onChange }: Props) {
 
         <div>
           <label className="form-label">目标学历 *</label>
-          <div className="flex gap-4 mt-2">
+          <div className="flex flex-wrap gap-2 sm:gap-4 mt-2">
             {degreeOptions.map((degree) => (
-              <label key={degree} className="flex items-center gap-2 cursor-pointer">
+              <label key={degree} className="flex items-center gap-1.5 sm:gap-2 cursor-pointer">
                 <input
                   type="radio"
                   name="degree"
                   value={degree}
                   checked={data.targetDegree === degree}
                   onChange={(e) => handleChange('targetDegree', e.target.value)}
-                  className="w-4 h-4 text-primary focus:ring-primary"
+                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary focus:ring-primary"
                 />
-                <span className={`px-3 py-1 rounded-full text-sm transition-all ${
+                <span className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm transition-all ${
                   data.targetDegree === degree 
                     ? 'bg-primary text-white' 
                     : 'bg-gray-100 text-gray-600 hover:bg-accent'
@@ -133,4 +133,3 @@ export default function StudentInfoForm({ data, onChange }: Props) {
     </div>
   );
 }
-

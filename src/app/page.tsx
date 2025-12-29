@@ -403,16 +403,16 @@ export default function Home() {
 
       {/* 错误提示 */}
       {error && (
-        <div className="max-w-7xl mx-auto px-6 mt-4">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
-            <svg className="w-5 h-5 text-red-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-3 sm:mt-4">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-3 sm:p-4 flex items-start gap-2 sm:gap-3">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-red-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <div className="flex-1">
-              <p className="text-red-700 whitespace-pre-line">{error}</p>
+            <div className="flex-1 min-w-0">
+              <p className="text-red-700 whitespace-pre-line text-xs sm:text-sm">{error}</p>
             </div>
-            <button onClick={() => setError('')} className="text-red-400 hover:text-red-600">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button onClick={() => setError('')} className="text-red-400 hover:text-red-600 flex-shrink-0">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -504,80 +504,80 @@ export default function Home() {
 
       {/* 报告预览 */}
       {currentStep === 'preview' && reportData && (
-        <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-            <div className="bg-gradient-to-r from-primary to-secondary p-6 text-white">
-              <h2 className="text-2xl font-bold mb-2">{studentInfo.name} - 生涯定制报告</h2>
-              <p className="text-white/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
+          <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl overflow-hidden">
+            <div className="bg-gradient-to-r from-primary to-secondary p-4 sm:p-6 text-white">
+              <h2 className="text-lg sm:text-2xl font-bold mb-1 sm:mb-2">{studentInfo.name} - 生涯定制报告</h2>
+              <p className="text-white/80 text-sm sm:text-base">
                 生成时间：{new Date(reportData.generatedAt).toLocaleString('zh-CN')}
               </p>
             </div>
 
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               {/* 报告概览卡片 */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div className="card p-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 mb-6 sm:mb-8">
+                <div className="card p-4 sm:p-6">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                       </svg>
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-500">人格类型</p>
-                      <p className="font-bold text-primary">{reportData.generated.personalityAnalysis.coreType.split('-')[0]}</p>
+                    <div className="min-w-0">
+                      <p className="text-xs sm:text-sm text-gray-500">人格类型</p>
+                      <p className="font-bold text-primary text-sm sm:text-base truncate">{reportData.generated.personalityAnalysis.coreType.split('-')[0]}</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="card p-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center">
-                      <svg className="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="card p-4 sm:p-6">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-secondary/10 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">职业方向</p>
-                      <p className="font-bold text-secondary">{reportData.generated.careerMatches.length} 个推荐方向</p>
+                      <p className="text-xs sm:text-sm text-gray-500">职业方向</p>
+                      <p className="font-bold text-secondary text-sm sm:text-base">{reportData.generated.careerMatches.length} 个推荐方向</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="card p-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-accent/30 flex items-center justify-center">
-                      <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="card p-4 sm:p-6">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-accent/30 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">升学项目</p>
-                      <p className="font-bold text-primary">{reportData.generated.educationProjects.length} 个推荐项目</p>
+                      <p className="text-xs sm:text-sm text-gray-500">升学项目</p>
+                      <p className="font-bold text-primary text-sm sm:text-base">{reportData.generated.educationProjects.length} 个推荐项目</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* 职业匹配预览 */}
-              <div className="mb-8">
-                <h3 className="text-lg font-bold text-gray-800 mb-4">职业适配分析</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="mb-6 sm:mb-8">
+                <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-3 sm:mb-4">职业适配分析</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
                   {reportData.generated.careerMatches.map((career, index) => (
-                    <div key={index} className="card p-4">
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">
+                    <div key={index} className="card p-3 sm:p-4">
+                      <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                        <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm sm:text-base flex-shrink-0">
                           {index + 1}
                         </span>
-                        <h4 className="font-bold text-primary">{career.direction}</h4>
+                        <h4 className="font-bold text-primary text-sm sm:text-base">{career.direction}</h4>
                       </div>
-                      <p className="text-sm text-gray-500 mb-3">{career.matchReason}</p>
-                      <div className="flex flex-wrap gap-2">
+                      <p className="text-xs sm:text-sm text-gray-500 mb-2 sm:mb-3">{career.matchReason}</p>
+                      <div className="flex flex-wrap gap-1 sm:gap-2">
                         {career.positions.slice(0, 3).map((pos, pIndex) => (
-                          <span key={pIndex} className="tag">{pos}</span>
+                          <span key={pIndex} className="tag text-xs">{pos}</span>
                         ))}
                         {career.positions.length > 3 && (
-                          <span className="tag">+{career.positions.length - 3}</span>
+                          <span className="tag text-xs">+{career.positions.length - 3}</span>
                         )}
                       </div>
                     </div>
@@ -586,26 +586,26 @@ export default function Home() {
               </div>
 
               {/* 发展路径预览 */}
-              <div className="mb-8">
-                <h3 className="text-lg font-bold text-gray-800 mb-4">核心发展路径</h3>
-                <div className="space-y-4">
+              <div className="mb-6 sm:mb-8">
+                <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-3 sm:mb-4">核心发展路径</h3>
+                <div className="space-y-3 sm:space-y-4">
                   {reportData.generated.developmentPaths.map((path, index) => (
-                    <div key={index} className="flex items-stretch bg-light-bg rounded-lg overflow-hidden">
-                      <div className="w-12 bg-gradient-to-b from-primary to-secondary flex items-center justify-center text-white font-bold text-lg">
+                    <div key={index} className="flex bg-light-bg rounded-lg overflow-hidden">
+                      <div className="w-10 sm:w-12 bg-gradient-to-b from-primary to-secondary flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
                         {index + 1}
                       </div>
-                      <div className="flex-1 p-4 grid grid-cols-3 gap-4">
+                      <div className="flex-1 p-3 sm:p-4 grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4">
                         <div>
-                          <p className="text-xs text-gray-500 mb-1">升学方向</p>
-                          <p className="font-medium text-primary">{path.educationDirection}</p>
+                          <p className="text-[10px] sm:text-xs text-gray-500 mb-0.5 sm:mb-1">升学方向</p>
+                          <p className="font-medium text-primary text-xs sm:text-sm">{path.educationDirection}</p>
                         </div>
                         <div>
-                          <p className="text-xs text-gray-500 mb-1">职业目标</p>
-                          <p className="font-medium text-secondary">{path.careerGoal}</p>
+                          <p className="text-[10px] sm:text-xs text-gray-500 mb-0.5 sm:mb-1">职业目标</p>
+                          <p className="font-medium text-secondary text-xs sm:text-sm">{path.careerGoal}</p>
                         </div>
                         <div>
-                          <p className="text-xs text-gray-500 mb-1">资源适配</p>
-                          <p className="font-medium">{path.resourceMatch}</p>
+                          <p className="text-[10px] sm:text-xs text-gray-500 mb-0.5 sm:mb-1">资源适配</p>
+                          <p className="font-medium text-xs sm:text-sm">{path.resourceMatch}</p>
                         </div>
                       </div>
                     </div>
@@ -615,14 +615,14 @@ export default function Home() {
 
               {/* 行动建议预览 */}
               <div>
-                <h3 className="text-lg font-bold text-gray-800 mb-4">后续行动建议</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-3 sm:mb-4">后续行动建议</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   {reportData.generated.summary.actionSuggestions.map((suggestion, index) => (
-                    <div key={index} className="flex items-center gap-3 p-4 bg-white rounded-lg border border-accent">
-                      <span className="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center font-bold flex-shrink-0">
+                    <div key={index} className="flex items-start sm:items-center gap-2 sm:gap-3 p-3 sm:p-4 bg-white rounded-lg border border-accent">
+                      <span className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-secondary text-white flex items-center justify-center font-bold flex-shrink-0 text-xs sm:text-sm">
                         {index + 1}
                       </span>
-                      <p className="text-gray-700">{suggestion}</p>
+                      <p className="text-gray-700 text-xs sm:text-sm">{suggestion}</p>
                     </div>
                   ))}
                 </div>
@@ -630,23 +630,23 @@ export default function Home() {
             </div>
 
             {/* 底部操作栏 */}
-            <div className="bg-gray-50 px-6 py-4 flex justify-between items-center">
-              <p className="text-sm text-gray-500">
+            <div className="bg-gray-50 px-4 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row justify-between items-center gap-3">
+              <p className="text-xs sm:text-sm text-gray-500 text-center sm:text-left">
                 报告共包含 10 个页面的详细内容
               </p>
               <button 
                 onClick={handleDownloadPdf}
                 disabled={downloadingPdf}
-                className="btn-primary flex items-center gap-2"
+                className="w-full sm:w-auto btn-primary flex items-center justify-center gap-2 text-sm"
               >
                 {downloadingPdf ? (
                   <>
-                    <div className="w-5 h-5 spinner" />
+                    <div className="w-4 h-4 sm:w-5 sm:h-5 spinner" />
                     正在生成 PDF...
                   </>
                 ) : (
                   <>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                     下载完整 PDF 报告
@@ -659,9 +659,11 @@ export default function Home() {
       )}
 
       {/* 底部信息 */}
-      <footer className="mt-auto py-8 text-center text-gray-500 text-sm">
+      <footer className="mt-auto py-6 sm:py-8 text-center text-gray-500 text-xs sm:text-sm px-4">
         <p>© 2024 中海皓联教育科技集团 - 华芯百科 版权所有</p>
-        <p className="mt-1">联系电话：021-52729115 | 邮箱：contact@huaxinbaike.com</p>
+        <p className="mt-1">联系电话：021-52729115</p>
+        <p className="sm:hidden">邮箱：contact@huaxinbaike.com</p>
+        <p className="hidden sm:block mt-1">邮箱：contact@huaxinbaike.com</p>
       </footer>
     </main>
   );

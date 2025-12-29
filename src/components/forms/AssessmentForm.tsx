@@ -83,7 +83,7 @@ export default function AssessmentForm({ data, onChange }: Props) {
     <div className="form-section animate-fade-in" style={{ animationDelay: '0.1s' }}>
       <h2 className="form-section-title">
         <span className="inline-flex items-center gap-2">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
           </svg>
           测评数据
@@ -91,15 +91,15 @@ export default function AssessmentForm({ data, onChange }: Props) {
       </h2>
 
       {/* 人格类型 */}
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <label className="form-label">人格核心类型 *</label>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mt-2">
           {personalityTypes.map((type) => (
             <button
               key={type}
               type="button"
               onClick={() => handleChange('personalityType', type)}
-              className={`p-3 rounded-lg border-2 transition-all text-sm font-medium ${
+              className={`p-2 sm:p-3 rounded-lg border-2 transition-all text-xs sm:text-sm font-medium ${
                 data.personalityType === type
                   ? 'border-primary bg-primary text-white shadow-md'
                   : 'border-gray-200 hover:border-secondary hover:bg-light-bg'
@@ -112,13 +112,13 @@ export default function AssessmentForm({ data, onChange }: Props) {
       </div>
 
       {/* 性格优势 */}
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <label className="form-label">性格优势 *（至少3点）</label>
-        <div className="flex gap-2 mb-2">
+        <div className="flex flex-col sm:flex-row gap-2 mb-2">
           <input
             type="text"
             className="form-input flex-1"
-            placeholder="输入一个性格优势，如：逻辑分析能力强"
+            placeholder="输入一个性格优势"
             value={newStrength}
             onChange={(e) => setNewStrength(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && addItem('strengths', newStrength, setNewStrength)}
@@ -126,22 +126,22 @@ export default function AssessmentForm({ data, onChange }: Props) {
           <button
             type="button"
             onClick={() => addItem('strengths', newStrength, setNewStrength)}
-            className="btn-primary"
+            className="btn-primary text-sm py-2"
           >
             添加
           </button>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {data.personalityTraits.strengths.map((item, index) => (
             <span
               key={index}
-              className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm"
+              className="inline-flex items-center gap-1 px-2 sm:px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs sm:text-sm"
             >
-              {item}
+              <span className="truncate max-w-[150px] sm:max-w-none">{item}</span>
               <button
                 type="button"
                 onClick={() => removeItem('strengths', index)}
-                className="hover:text-red-500"
+                className="hover:text-red-500 flex-shrink-0"
               >
                 ×
               </button>
@@ -149,18 +149,18 @@ export default function AssessmentForm({ data, onChange }: Props) {
           ))}
         </div>
         {data.personalityTraits.strengths.length < 3 && (
-          <p className="text-sm text-orange-500 mt-1">还需添加 {3 - data.personalityTraits.strengths.length} 个优势</p>
+          <p className="text-xs sm:text-sm text-orange-500 mt-1">还需添加 {3 - data.personalityTraits.strengths.length} 个优势</p>
         )}
       </div>
 
       {/* 性格缺点 */}
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <label className="form-label">性格缺点 *（至少3点）</label>
-        <div className="flex gap-2 mb-2">
+        <div className="flex flex-col sm:flex-row gap-2 mb-2">
           <input
             type="text"
             className="form-input flex-1"
-            placeholder="输入一个性格缺点，如：有时过于追求完美"
+            placeholder="输入一个性格缺点"
             value={newWeakness}
             onChange={(e) => setNewWeakness(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && addItem('weaknesses', newWeakness, setNewWeakness)}
@@ -168,22 +168,22 @@ export default function AssessmentForm({ data, onChange }: Props) {
           <button
             type="button"
             onClick={() => addItem('weaknesses', newWeakness, setNewWeakness)}
-            className="btn-primary"
+            className="btn-primary text-sm py-2"
           >
             添加
           </button>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {data.personalityTraits.weaknesses.map((item, index) => (
             <span
               key={index}
-              className="inline-flex items-center gap-1 px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm"
+              className="inline-flex items-center gap-1 px-2 sm:px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs sm:text-sm"
             >
-              {item}
+              <span className="truncate max-w-[150px] sm:max-w-none">{item}</span>
               <button
                 type="button"
                 onClick={() => removeItem('weaknesses', index)}
-                className="hover:text-red-500"
+                className="hover:text-red-500 flex-shrink-0"
               >
                 ×
               </button>
@@ -191,23 +191,23 @@ export default function AssessmentForm({ data, onChange }: Props) {
           ))}
         </div>
         {data.personalityTraits.weaknesses.length < 3 && (
-          <p className="text-sm text-orange-500 mt-1">还需添加 {3 - data.personalityTraits.weaknesses.length} 个缺点</p>
+          <p className="text-xs sm:text-sm text-orange-500 mt-1">还需添加 {3 - data.personalityTraits.weaknesses.length} 个缺点</p>
         )}
       </div>
 
       {/* 思维模式 */}
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <label className="form-label">思维模式/行为特点 *（至少3条）</label>
-        <div className="flex gap-2 mb-2">
+        <div className="flex flex-col sm:flex-row gap-2 mb-2">
           <input
             type="text"
             className="form-input flex-1"
-            placeholder="描述思维或行为特点，如：善于从全局角度思考问题"
+            placeholder="描述思维或行为特点"
             value={newPattern}
             onChange={(e) => setNewPattern(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && addPattern()}
           />
-          <button type="button" onClick={addPattern} className="btn-primary">
+          <button type="button" onClick={addPattern} className="btn-primary text-sm py-2">
             添加
           </button>
         </div>
@@ -215,13 +215,13 @@ export default function AssessmentForm({ data, onChange }: Props) {
           {data.thinkingPatterns.map((item, index) => (
             <div
               key={index}
-              className="flex items-center justify-between p-3 bg-blue-50 rounded-lg"
+              className="flex items-center justify-between p-2 sm:p-3 bg-blue-50 rounded-lg gap-2"
             >
-              <span className="text-blue-700">{item}</span>
+              <span className="text-blue-700 text-xs sm:text-sm">{item}</span>
               <button
                 type="button"
                 onClick={() => removePattern(index)}
-                className="text-red-500 hover:text-red-700"
+                className="text-red-500 hover:text-red-700 text-xs sm:text-sm flex-shrink-0"
               >
                 删除
               </button>
@@ -229,20 +229,20 @@ export default function AssessmentForm({ data, onChange }: Props) {
           ))}
         </div>
         {data.thinkingPatterns.length < 3 && (
-          <p className="text-sm text-orange-500 mt-1">还需添加 {3 - data.thinkingPatterns.length} 条描述</p>
+          <p className="text-xs sm:text-sm text-orange-500 mt-1">还需添加 {3 - data.thinkingPatterns.length} 条描述</p>
         )}
       </div>
 
       {/* 兴趣倾向 */}
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <label className="form-label">兴趣倾向 *（选择多项）</label>
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-2 mt-2">
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-1.5 sm:gap-2 mt-2">
           {interestOptions.map((interest) => (
             <button
               key={interest}
               type="button"
               onClick={() => toggleArrayItem('interestTendency', interest)}
-              className={`p-2 rounded-lg border text-sm transition-all ${
+              className={`p-1.5 sm:p-2 rounded-lg border text-xs sm:text-sm transition-all ${
                 data.interestTendency.includes(interest)
                   ? 'border-secondary bg-secondary text-white'
                   : 'border-gray-200 hover:border-secondary hover:bg-light-bg'
@@ -257,13 +257,13 @@ export default function AssessmentForm({ data, onChange }: Props) {
       {/* 学科优势 */}
       <div>
         <label className="form-label">学科优势 *（至少选择2科）</label>
-        <div className="grid grid-cols-4 md:grid-cols-6 gap-2 mt-2">
+        <div className="grid grid-cols-4 sm:grid-cols-6 gap-1.5 sm:gap-2 mt-2">
           {subjectOptions.map((subject) => (
             <button
               key={subject}
               type="button"
               onClick={() => toggleArrayItem('subjectStrengths', subject)}
-              className={`p-2 rounded-lg border text-sm transition-all ${
+              className={`p-1.5 sm:p-2 rounded-lg border text-xs sm:text-sm transition-all ${
                 data.subjectStrengths.includes(subject)
                   ? 'border-primary bg-primary text-white'
                   : 'border-gray-200 hover:border-primary hover:bg-light-bg'
@@ -274,10 +274,9 @@ export default function AssessmentForm({ data, onChange }: Props) {
           ))}
         </div>
         {data.subjectStrengths.length < 2 && (
-          <p className="text-sm text-orange-500 mt-1">还需选择 {2 - data.subjectStrengths.length} 个学科</p>
+          <p className="text-xs sm:text-sm text-orange-500 mt-1">还需选择 {2 - data.subjectStrengths.length} 个学科</p>
         )}
       </div>
     </div>
   );
 }
-
