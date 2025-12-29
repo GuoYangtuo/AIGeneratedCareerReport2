@@ -5,12 +5,15 @@ import type { ReportInputData, FullReportData } from '@/types/report';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { input, apiKey } = body as { input: ReportInputData; apiKey: string };
+    const { input } = body as { input: ReportInputData };
+
+    // 从环境变量读取 API Key
+    const apiKey = process.env.DEEPSEEK_API_KEY;
 
     if (!apiKey) {
       return NextResponse.json(
-        { error: '请提供 DeepSeek API Key' },
-        { status: 400 }
+        { error: '服务器未配置 DeepSeek API Key，请联系管理员' },
+        { status: 500 }
       );
     }
 
@@ -40,4 +43,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-

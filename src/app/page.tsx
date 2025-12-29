@@ -76,7 +76,6 @@ type Step = 'input' | 'generating' | 'preview';
 
 export default function Home() {
   const [currentStep, setCurrentStep] = useState<Step>('input');
-  const [apiKey, setApiKey] = useState('');
   const [generatingProgress, setGeneratingProgress] = useState(0);
   const [generatingMessage, setGeneratingMessage] = useState('');
   const [error, setError] = useState('');
@@ -110,10 +109,9 @@ export default function Home() {
     if (!familyInfo.demands.locationPreference) errors.push('请填写地域偏好');
     if (!consultantInfo.name) errors.push('请填写咨询老师姓名');
     if (!consultantInfo.phone) errors.push('请填写咨询老师电话');
-    if (!apiKey) errors.push('请输入 DeepSeek API Key');
 
     return errors;
-  }, [studentInfo, assessmentData, familyInfo, consultantInfo, apiKey]);
+  }, [studentInfo, assessmentData, familyInfo, consultantInfo]);
 
   // 生成报告
   const handleGenerate = async () => {
@@ -162,7 +160,7 @@ export default function Home() {
       const response = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ input, apiKey })
+        body: JSON.stringify({ input })
       });
 
       clearInterval(progressInterval);
@@ -311,16 +309,6 @@ export default function Home() {
             {/* 桌面端导航按钮 */}
             {currentStep === 'input' && (
               <div className="hidden lg:flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <label className="text-sm text-gray-600">API Key:</label>
-                  <input
-                    type="password"
-                    className="w-64 px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="输入 DeepSeek API Key"
-                    value={apiKey}
-                    onChange={(e) => setApiKey(e.target.value)}
-                  />
-                </div>
                 <button onClick={handleGenerate} className="btn-primary flex items-center gap-2">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -361,18 +349,6 @@ export default function Home() {
             )}
           </div>
           
-          {/* 移动端 API Key 输入和按钮 */}
-          {currentStep === 'input' && (
-            <div className="lg:hidden mt-3 space-y-2">
-              <input
-                type="password"
-                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                placeholder="输入 DeepSeek API Key"
-                value={apiKey}
-                onChange={(e) => setApiKey(e.target.value)}
-              />
-            </div>
-          )}
           
           {/* 移动端预览操作栏 */}
           {currentStep === 'preview' && (
@@ -446,23 +422,20 @@ export default function Home() {
               开始生成报告
             </button>
             
-            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-sm text-gray-500">
-              <span>没有 API Key？</span>
-              <div className="flex items-center gap-3 sm:gap-4">
-                <button 
-                  onClick={handleDemoMode}
-                  className="text-secondary hover:text-primary underline font-medium"
-                >
-                  查看演示报告
-                </button>
-                <span className="text-gray-300">|</span>
-                <button 
-                  onClick={loadSampleData}
-                  className="text-secondary hover:text-primary underline font-medium"
-                >
-                  加载示例数据
-                </button>
-              </div>
+            <div className="flex items-center gap-3 sm:gap-4 text-sm text-gray-500">
+              <button 
+                onClick={handleDemoMode}
+                className="text-secondary hover:text-primary underline font-medium"
+              >
+                查看演示报告
+              </button>
+              <span className="text-gray-300">|</span>
+              <button 
+                onClick={loadSampleData}
+                className="text-secondary hover:text-primary underline font-medium"
+              >
+                加载示例数据
+              </button>
             </div>
           </div>
         </div>
