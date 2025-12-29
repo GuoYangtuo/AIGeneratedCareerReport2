@@ -113,7 +113,7 @@ function generateReportHTML(data: FullReportData): string {
       padding: 0;
     }
     body {
-      font-family: "Microsoft YaHei", "Source Han Sans", "SimHei", sans-serif;
+      font-family: "Noto Sans CJK SC", "WenQuanYi Micro Hei", "WenQuanYi Zen Hei", "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Source Han Sans SC", "SimHei", "STHeiti", sans-serif;
       color: ${COLORS.black};
       font-size: 10pt;
       line-height: 1.5;
