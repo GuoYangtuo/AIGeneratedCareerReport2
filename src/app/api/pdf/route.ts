@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 
     // 启动 Puppeteer - 优先使用系统安装的 Chrome
     const executablePath = process.env.CHROME_PATH || 
-      (process.platform === 'linux' ? '/usr/bin/google-chrome-stable' : undefined);
+      (process.platform === 'linux' ? '/usr/bin/chromium-browser' : undefined);
     
     browser = await puppeteer.launch({
       headless: true,
